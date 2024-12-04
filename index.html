@@ -1,0 +1,316 @@
+<html><head><base href="https://www.example.com">
+<meta charset="UTF-8">
+<style>
+    body {
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        background: #f0f9ff;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .header {
+        text-align: center;
+        padding: 20px;
+        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+        border-radius: 15px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .section {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        animation: fadeIn 1s ease-in;
+    }
+
+    .game-card {
+        border: 3px solid #ffd700;
+        border-radius: 15px;
+        padding: 15px;
+        margin: 15px 0;
+        background: #fff;
+        transition: transform 0.3s;
+    }
+
+    .game-card:hover {
+        transform: scale(1.02);
+    }
+
+    h1 {
+        color: #2c3e50;
+        font-size: 2.5em;
+    }
+
+    h2 {
+        color: #e74c3c;
+    }
+
+    .character {
+        width: 150px;
+        height: 150px;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+
+    .bounce {
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .interactive-button {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1.1em;
+        margin: 10px;
+        transition: all 0.3s;
+    }
+
+    .interactive-button:hover {
+        background: #2980b9;
+        transform: scale(1.1);
+    }
+
+    .robot {
+        transition: transform 0.5s;
+    }
+
+    .maze-player {
+        transition: all 0.3s;
+    }
+
+    .story-container {
+        margin-top: 20px;
+        padding: 10px;
+        border: 2px solid #3498db;
+        border-radius: 10px;
+        display: none;
+    }
+
+    .choice-button {
+        background: #2ecc71;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 15px;
+        margin: 5px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>¡Aprende Programación Divirtiéndote! 🚀</h1>
+            <svg class="character bounce" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="#FFD700"/>
+                <circle cx="35" cy="40" r="5" fill="#000"/>
+                <circle cx="65" cy="40" r="5" fill="#000"/>
+                <path d="M 30 60 Q 50 70 70 60" fill="none" stroke="#000" stroke-width="3"/>
+            </svg>
+        </div>
+
+        <div class="section">
+            <h2>¿Qué es la Programación? 🤔</h2>
+            <p>La programación es como dar instrucciones a una computadora, ¡igual que cuando le dices a un robot qué hacer! Es como crear recetas mágicas para que la computadora haga cosas increíbles.</p>
+            
+            <div class="game-card">
+                <h3>Juego 1: El Robot Bailarín 🤖</h3>
+                <svg id="dancing-robot" viewBox="0 0 100 100" style="width: 200px; height: 200px">
+                    <rect class="robot" x="30" y="20" width="40" height="60" fill="#3498db"/>
+                    <circle class="robot" cx="50" cy="15" r="10" fill="#e74c3c"/>
+                    <rect class="robot" x="20" y="40" width="10" height="30" fill="#3498db"/>
+                    <rect class="robot" x="70" y="40" width="10" height="30" fill="#3498db"/>
+                </svg>
+                <p>¡Dale instrucciones al robot para que baile! Aprende sobre secuencias de comandos.</p>
+                <button class="interactive-button" onclick="danceRobot()">¡Hacer bailar al robot!</button>
+            </div>
+
+            <div class="game-card">
+                <h3>Juego 2: La Aventura del Laberinto 🗺️</h3>
+                <svg id="maze-game" viewBox="0 0 100 100" style="width: 200px; height: 200px">
+                    <rect x="10" y="10" width="80" height="80" fill="#ecf0f1"/>
+                    <path d="M 20 20 H 80 V 80 H 20 V 20 M 40 20 V 60 M 60 40 V 80" stroke="#2c3e50" fill="none" stroke-width="3"/>
+                    <circle id="maze-player" class="maze-player" cx="25" cy="25" r="5" fill="#e74c3c"/>
+                </svg>
+                <p>¡Usa las flechas del teclado para mover el punto rojo! ¡Aprende sobre eventos!</p>
+                <div id="maze-controls">
+                    <button class="interactive-button" onclick="movePlayer('ArrowUp')">⬆️</button>
+                    <button class="interactive-button" onclick="movePlayer('ArrowDown')">⬇️</button>
+                    <button class="interactive-button" onclick="movePlayer('ArrowLeft')">⬅️</button>
+                    <button class="interactive-button" onclick="movePlayer('ArrowRight')">➡️</button>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <h3>Juego 3: Constructor de Historias 📚</h3>
+                <svg viewBox="0 0 100 100" style="width: 200px; height: 200px">
+                    <rect x="20" y="20" width="60" height="70" fill="#f1c40f"/>
+                    <rect x="30" y="30" width="40" height="5" fill="#2c3e50"/>
+                    <rect x="30" y="40" width="40" height="5" fill="#2c3e50"/>
+                    <rect x="30" y="50" width="40" height="5" fill="#2c3e50"/>
+                </svg>
+                <p>¡Crea tu propia historia eligiendo diferentes opciones!</p>
+                <button class="interactive-button" onclick="startStory()">¡Crear Historia!</button>
+                <div id="story-container" class="story-container">
+                    <p id="story-text"></p>
+                    <div id="story-choices"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>¿Por qué es divertido programar? 🌈</h2>
+            <ul>
+                <li>Puedes crear tus propios juegos 🎮</li>
+                <li>Resuelves problemas como un detective 🔍</li>
+                <li>Das vida a tus ideas más creativas 💡</li>
+                <li>¡Es como tener superpoderes digitales! ⚡</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Robot Bailarín
+        function danceRobot() {
+            const robot = document.querySelectorAll('.robot');
+            let danceCount = 0;
+            const danceInterval = setInterval(() => {
+                robot.forEach(part => {
+                    part.style.transform = `rotate(${Math.sin(danceCount) * 20}deg)`;
+                });
+                danceCount += 0.2;
+                if(danceCount > 12) {
+                    clearInterval(danceInterval);
+                    robot.forEach(part => {
+                        part.style.transform = 'rotate(0deg)';
+                    });
+                }
+            }, 50);
+        }
+
+        // Juego del Laberinto
+        const player = document.getElementById('maze-player');
+        let playerX = 25;
+        let playerY = 25;
+
+        function movePlayer(direction) {
+            const step = 5;
+            switch(direction) {
+                case 'ArrowUp':
+                    if(playerY > 20) playerY -= step;
+                    break;
+                case 'ArrowDown':
+                    if(playerY < 75) playerY += step;
+                    break;
+                case 'ArrowLeft':
+                    if(playerX > 20) playerX -= step;
+                    break;
+                case 'ArrowRight':
+                    if(playerX < 75) playerX += step;
+                    break;
+            }
+            player.setAttribute('cx', playerX);
+            player.setAttribute('cy', playerY);
+            
+            if(playerX > 70 && playerY > 70) {
+                alert('¡Felicitaciones! ¡Has llegado a la meta! 🎉');
+                playerX = 25;
+                playerY = 25;
+                player.setAttribute('cx', playerX);
+                player.setAttribute('cy', playerY);
+            }
+        }
+
+        // Constructor de Historias
+        const story = {
+            start: {
+                text: "Un día, un pequeño programador encontró una computadora mágica. ¿Qué debería hacer?",
+                choices: [
+                    {text: "Crear un juego", next: "game"},
+                    {text: "Escribir una historia", next: "story"}
+                ]
+            },
+            game: {
+                text: "¡Decidió crear un juego! ¿Qué tipo de juego debería ser?",
+                choices: [
+                    {text: "Un juego de aventuras", next: "end-adventure"},
+                    {text: "Un juego de puzzles", next: "end-puzzle"}
+                ]
+            },
+            story: {
+                text: "¡Decidió escribir una historia! ¿Sobre qué debería escribir?",
+                choices: [
+                    {text: "Sobre robots amigables", next: "end-robots"},
+                    {text: "Sobre magos programadores", next: "end-wizards"}
+                ]
+            },
+            "end-adventure": {
+                text: "¡Creó un increíble juego de aventuras y todos sus amigos se divirtieron jugándolo!",
+                choices: [{text: "Volver a empezar", next: "start"}]
+            },
+            "end-puzzle": {
+                text: "¡Su juego de puzzles ayudó a muchos niños a aprender mientras se divertían!",
+                choices: [{text: "Volver a empezar", next: "start"}]
+            },
+            "end-robots": {
+                text: "¡Su historia sobre robots amigables inspiró a muchos niños a aprender programación!",
+                choices: [{text: "Volver a empezar", next: "start"}]
+            },
+            "end-wizards": {
+                text: "¡Su historia sobre magos programadores se convirtió en un best-seller!",
+                choices: [{text: "Volver a empezar", next: "start"}]
+            }
+        };
+
+        function startStory() {
+            const container = document.getElementById('story-container');
+            container.style.display = 'block';
+            showStoryPart('start');
+        }
+
+        function showStoryPart(part) {
+            const storyText = document.getElementById('story-text');
+            const choices = document.getElementById('story-choices');
+            const currentPart = story[part];
+            
+            storyText.textContent = currentPart.text;
+            choices.innerHTML = '';
+            
+            currentPart.choices.forEach(choice => {
+                const button = document.createElement('button');
+                button.className = 'choice-button';
+                button.textContent = choice.text;
+                button.onclick = () => showStoryPart(choice.next);
+                choices.appendChild(button);
+            });
+        }
+
+        // Controles de teclado para el laberinto
+        document.addEventListener('keydown', (event) => {
+            if(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+                movePlayer(event.key);
+            }
+        });
+    </script>
+</body>
+</html>
